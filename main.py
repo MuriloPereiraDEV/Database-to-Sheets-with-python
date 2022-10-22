@@ -1,6 +1,7 @@
 from __future__ import print_function
 from operator import index
-from bancoDeDados import bancoSql, date
+from bancoDeDados import bancoSql, DATE
+from dadosSheets import SCOPES, SAMPLE_SPREADSHEET_ID, SAMPLE_RANGE_NAME
 import pandas as pd
 import time
 import os.path
@@ -12,13 +13,6 @@ from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-
-# SE MUDAR O ESCOPO, APAGAR ARQUIVO TOKEN.JSON
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-
-# ID e Range da Planilha
-SAMPLE_SPREADSHEET_ID = '1SQpEutNB-UwFEB0O6V_yIWOnOTynkfjCVnA7tKKxdTY'
-SAMPLE_RANGE_NAME = 'Página1!A1:G'
 
 
 def main():
@@ -50,7 +44,7 @@ def main():
 
     lengthValues = 0
     for i in values:
-        if i[0] >= date:
+        if i[0] >= DATE:
             lengthValues += 1
 
     valuesDF = pd.DataFrame(values)
